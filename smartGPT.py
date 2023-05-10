@@ -3,6 +3,7 @@ import yaml
 
 gpt3 = "gpt-3.5-turbo"
 gpt4 = "gpt-4"
+temperature = 0.5
 gpt3_tokens = 0
 gpt4_tokens = 0
 rate_of_3 = 0.002/1000
@@ -25,7 +26,8 @@ def initial_output(user_input):
         messages = [{"role" :"user", "content" : initial_prompt}]
         completion = openai.ChatCompletion.create(
             model = gpt3,
-            messages = messages
+            messages = messages,
+            temperature = temperature
         )
         response = completion.choices[0].message.content
         tokens = completion.usage.total_tokens
@@ -37,7 +39,7 @@ def initial_output(user_input):
     return responses, initial_prompt
 
 def researcher(answer_list, initial_prompt):
-    prompt = ("You are a researcher tasked with investigating the 3 response options provided. "
+    prompt = ("You are a researcher tasked with investigating the three response options provided. "
               "List the flaws and faulty logic of each answer option. "
               "Let's work this out in a step by step way to be sure we have all the errors:")
 
@@ -48,7 +50,8 @@ def researcher(answer_list, initial_prompt):
 
     completion = openai.ChatCompletion.create(
         model=gpt3,
-        messages=messages
+        messages=messages,
+        temperature = temperature
     )
     response = completion.choices[0].message.content
     tokens = completion.usage.total_tokens
@@ -63,7 +66,7 @@ def researcher(answer_list, initial_prompt):
 
 def resolver(messages):
     prompt = ("The previous responses are from the researcher. You are a resolver tasked with 1)"
-            "finding which of the 3 answer options the researcher thought was best 2)"
+            "finding which of the three answer options the researcher thought was best 2)"
             "improving that answer, and 3) Printing the improved answer in full. "
             "Let's work this out in a step by step way to be sure we have the right answer: ")
 
@@ -71,8 +74,10 @@ def resolver(messages):
 
     completion = openai.ChatCompletion.create(
         model=gpt4,
-        messages=messages
+        messages=messages,
+        temperature = temperature
     )
+    
     response = completion.choices[0].message.content
     tokens = completion.usage.total_tokens
     print(response)
@@ -92,7 +97,8 @@ def final_output(final_response):
 
     completion = openai.ChatCompletion.create(
         model = gpt3,
-        messages=messages
+        messages=messages,
+        temperature = temperature
     )
 
     response = completion.choices[0].message.content
@@ -113,10 +119,10 @@ def concat_output(responses):
     return answer_prompt
 
 def main():
-    # user_input = input("Question: ")
-    user_input = ("I left 5 clothes to dry out in the sun. " 
-                "It took them 5 hours to dry completely. "
-                "How long would it take to dry 30 clothes.")
+    user_input = input("Question: ")
+    # user_input = ("I left 5 clothes to dry out in the sun. " 
+    #             "It took them 5 hours to dry completely. "
+    #             "How long would it take to dry 30 clothes.")
     initial_responses, initial_prompt = initial_output(user_input)
     answer_list = concat_output(initial_responses)
     print("--------------------------------------------")
