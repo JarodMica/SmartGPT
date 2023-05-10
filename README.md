@@ -3,12 +3,15 @@ An implemetation of "SmartGPT" as proposed by AI explained in this video: https:
 
 ## To run this
 Clone the repository:
+
 ```git clone https://github.com/JarodMica/SmartGPT.git```
 
 Navigate into the repository folder and then set up the needed libraries. I recommend that you use a venv to do so and then run:
+
 ```pip install requirements.txt```
 
-Setup your openai key in ```keys.yaml.example```. You will need to enter your own API key which can be found on openai's website @https://platform.openai.com/overview
+Setup your openai key in ```keys.yaml.example```. You will have to change the name to ```keys.yaml``` in order for this to work.
+As well, you will need to enter your own API key which can be found on openai's website @https://platform.openai.com/overview
 
 ## Some things to note
 - [ ] Exact implementation may differ than that of what was discussed in Phillip's video.
