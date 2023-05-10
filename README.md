@@ -11,4 +11,4 @@ Navigate into the repository folder and then set up the needed libraries. I reco
 Setup your openai key in ```keys.yaml.example```. You will need to enter your own API key which can be found on openai's website @https://platform.openai.com/overview
 
 ## Some things to note
--[ ] Implementation may differ than that of what was discussed in Phillip's video.
+- [ ] Implementation may differ than that of what was discussed in Phillip's video.
