@@ -1,1 +1,3 @@
 keys.yaml
+*conversations
+*.venv
