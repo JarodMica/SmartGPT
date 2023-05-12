@@ -15,3 +15,6 @@ As well, you will need to enter your own API key which can be found on openai's 
 
 ## Some things to note
 - [ ] Exact implementation may differ than that of what was discussed in Phillip's video.
+- [ ] The ability to use different models for each part of the way is available (You can use gpt3.5 and 4)
+- [ ] Offers the ability to change the # of outputs produced initially for the question
+- [ ] Automatically saves the messages after the script finishes
